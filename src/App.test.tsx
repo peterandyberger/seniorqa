@@ -1,10 +1,11 @@
 import { calculateOccupancy } from './App';
+import guests from './guests.json'
 
 describe('App Tests', () => {
   
  
   it('Test 1: 3 Premium, 3 Economy Rooms', () => {
-    const result = calculateOccupancy(3, 3);
+    const result = calculateOccupancy(3, 3, guests);
     expect(result).toEqual({
       premiumOccupancy: 3,
       economyOccupancy: 3,
@@ -14,7 +15,7 @@ describe('App Tests', () => {
   });
 
   it('Test 2: 7 Premium, 5 Economy Rooms', () => {
-    const result = calculateOccupancy(7, 5);
+    const result = calculateOccupancy(7, 5, guests);
     expect(result).toEqual({
       premiumOccupancy: 6,
       economyOccupancy: 4,
@@ -24,7 +25,7 @@ describe('App Tests', () => {
   });
 
   it('Test 3: 2 Premium, 7 Economy Rooms', () => {
-    const result = calculateOccupancy(2, 7);
+    const result = calculateOccupancy(2, 7, guests);
     expect(result).toEqual({
       premiumOccupancy: 2,
       economyOccupancy: 4,
@@ -34,7 +35,7 @@ describe('App Tests', () => {
   });
 
   it('Test 4: 7 Premium, 1 Economy Room', () => {
-    const result = calculateOccupancy(7, 1);
+    const result = calculateOccupancy(7, 1, guests);
     expect(result).toEqual({
       premiumOccupancy: 7,
       economyOccupancy: 1,
@@ -45,7 +46,7 @@ describe('App Tests', () => {
 
 
   it('Test with Negative Room Numbers', () => {
-    const result = calculateOccupancy(-1, -1);
+    const result = calculateOccupancy(-1, -1, guests);
     expect(result).toEqual({
       premiumOccupancy: 0,
       economyOccupancy: 0,
@@ -56,7 +57,7 @@ describe('App Tests', () => {
 
  
   it('Test with More Guests Than Rooms', () => {
-    const result = calculateOccupancy(1, 1);
+    const result = calculateOccupancy(1, 1, guests);
     expect(result).toEqual({
       premiumOccupancy: 1,
       economyOccupancy: 1,
@@ -66,7 +67,7 @@ describe('App Tests', () => {
   });
 
   it('Test with No Available Rooms', () => {
-    const result = calculateOccupancy(0, 0);
+    const result = calculateOccupancy(0, 0, guests);
     expect(result).toEqual({
       premiumOccupancy: 0,
       economyOccupancy: 0,

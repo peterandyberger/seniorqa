@@ -1,7 +1,6 @@
 import { useState, FormEvent } from "react";
 import "./App.css";
-
-const GUESTS = [23, 45, 155, 374, 22, 99, 100, 101, 115, 209];
+import guests from './guests.json'
 
 interface Occupancy {
   premiumOccupancy: number;
@@ -9,8 +8,8 @@ interface Occupancy {
   premiumRevenue: number;
   economyRevenue: number;
 }
-export function calculateOccupancy(premiumRooms: number, economyRooms: number): Occupancy {
-  const sortedGuests = [...GUESTS].sort((a, b) => b - a);
+export function calculateOccupancy(premiumRooms: number, economyRooms: number, guests: number[]): Occupancy {
+  const sortedGuests = [...guests].sort((a, b) => b - a);
   let premiumOccupancy = 0;
   let economyOccupancy = 0;
   let premiumRevenue = 0;
@@ -61,11 +60,6 @@ export function calculateOccupancy(premiumRooms: number, economyRooms: number): 
   };
 }
 
-
-
-
-
-
 function App() {
   const [premiumRooms, setPremiumRooms] = useState<number>(0);
   const [economyRooms, setEconomyRooms] = useState<number>(0);
@@ -73,7 +67,7 @@ function App() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const result = calculateOccupancy(premiumRooms, economyRooms);
+    const result = calculateOccupancy(premiumRooms, economyRooms, guests);
     setOccupancy(result);
   };
 
