@@ -1,34 +1,23 @@
-# Getting Started with Create React App
+Issues found in the original 'engineers solution'
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Incorrect Handling of Guests Willing to Pay EUR 100 or More:
 
-## Available Scripts
+The current implementation in calculateOccupancy skips over guests willing to pay EUR 100 or more. This is incorrect as these guests should be considered for Premium rooms first.
 
-In the project directory, you can run:
+To fix this, I have first allocated these high-paying guests to Premium rooms before considering other guests.
 
-### `npm start`
+Allocation Logic for Premium and Economy Rooms:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The current logic doesn't properly handle the scenario where lower-paying customers could be upgraded to Premium rooms if all Economy rooms are filled. This required a more complex allocation logic.
 
-### `npm test`
+I have implemented a two-pass allocation: first, allocating guests to their preferred rooms (Premium for >= EUR 100, Economy otherwise), and then checked if any upgrades are possible.
 
-Launches the test runner in the interactive watch mode.
+State Management and Display Logic:
 
-### `npm run build`
+The application should have handled the display of the number of occupied rooms and the revenue generated more effectively.
 
-Builds the app for production to the `build` folder.
+After calculating the occupancy, I have updated the state variables to reflect the correct number of free and occupied rooms.
 
-### `npm run eject`
+Typescript:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-### Solution for task
-
-To calculate the occupancy, we can sort the potential guests in descending order of their willingness to pay, and then loop through them. For each guest, we check if they are willing to pay more than EUR 100, and if so, we skip them. If they are willing to pay less than EUR 100 and there are available Premium rooms, we assign them a Premium room. Otherwise, we assign them an Economy room. We continue until there are no more available rooms.
+Even if the code is using typescript there were several ANY types which should be avoided so I made changes on that as well, and created a simple interface
