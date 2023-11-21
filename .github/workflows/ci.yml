@@ -25,6 +25,13 @@ jobs:
     - name: Install Playwright
       run: npx playwright install
 
+   - name: Start the application
+      run: npm start &
+      working-directory: ./src
+
+    - name: Wait for the application to start
+      run: sleep 10   
+
     - name: Run UI tests
       run: npx cucumber-js
       working-directory: ./src
