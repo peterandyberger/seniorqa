@@ -25,7 +25,7 @@ jobs:
     - name: Install Playwright
       run: npx playwright install
 
-   - name: Start the application
+    - name: Start the application
       run: npm start &
       working-directory: ./src
 
