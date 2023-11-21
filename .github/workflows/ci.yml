@@ -27,3 +27,5 @@ jobs:
 
     - name: Run UI tests
       run: npx cucumber-js
+      working-directory: ./src
+
