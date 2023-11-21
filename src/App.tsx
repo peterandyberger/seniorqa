@@ -79,6 +79,7 @@ function App() {
             <p>Premium Rooms:</p>
             <input
               type="number"
+              id="premium-rooms-input" 
               value={premiumRooms}
               onChange={(event) => setPremiumRooms(parseInt(event.target.value, 10))}
             />
@@ -88,24 +89,26 @@ function App() {
             <p>Economy Rooms:</p>
             <input
               type="number"
+              id="economy-rooms-input"
               value={economyRooms}
               onChange={(event) => setEconomyRooms(parseInt(event.target.value, 10))}
             />
           </div>
           <br />
-          <button type="submit">Calculate Occupancy</button>
+          <button type="submit" id="calculate-occupancy-button">Calculate Occupancy</button> 
         </form>
         {occupancy && (
           <div>
-            <p>Free Premium rooms: {premiumRooms - occupancy.premiumOccupancy}</p>
-            <p>Free Economy rooms: {economyRooms - occupancy.economyOccupancy}</p>
-            <p>Usage Premium: {occupancy.premiumOccupancy} (EUR {occupancy.premiumRevenue})</p>
-            <p>Usage Economy: {occupancy.economyOccupancy} (EUR {occupancy.economyRevenue})</p>
+            <p id="free-premium-rooms">Free Premium rooms: {premiumRooms - occupancy.premiumOccupancy}</p> 
+            <p id="free-economy-rooms">Free Economy rooms: {economyRooms - occupancy.economyOccupancy}</p> 
+            <p id="usage-premium">Usage Premium: {occupancy.premiumOccupancy} (EUR {occupancy.premiumRevenue})</p> 
+            <p id="usage-economy">Usage Economy: {occupancy.economyOccupancy} (EUR {occupancy.economyRevenue})</p> 
           </div>
         )}
       </div>
     </div>
   );
+  
 }
 
 export default App;
